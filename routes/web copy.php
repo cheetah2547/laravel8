@@ -77,16 +77,13 @@ Route::get("/gallery/cat", function () {
     $cat = "http://www.onyxtruth.com/wp-content/uploads/2017/06/black-panther-movie-onyx-truth.jpg";
     return view("test/cat", compact("cat"));
 });
-Route::middleware(['auth', 'role:admin,teacher,student'])->group(function () {
+
 Route::get("/teacher" , function (){
 	return view("teacher");
 });
-});
 
-Route::middleware(['auth'])->group(function () {
 Route::get("/student" , function (){
 	return view("student");
-});
 });
 
 Route::get("/theme" , function (){
@@ -167,9 +164,5 @@ Route::delete("/product/{id}", [ProductController::class, "destroy"])->name('pro
 
 Route::resource('/staff', StaffController::class );
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
 
